@@ -11,3 +11,5 @@
 ```
 node test.pushing.common.token.js
 ```
+# publisher_id 生成
+/data/nodejs/mdc.common.master/test/test.pushing.common.user.js
