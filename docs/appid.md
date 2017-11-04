@@ -1,5 +1,8 @@
 
 # mdc-sub-common
+- Path: subscribe/common
+
+
 /data/nodejs/mdc.common.master/test/test.pushing.common.token.js
 
 - 修改 var env = 'prod';
