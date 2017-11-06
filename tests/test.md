@@ -6,7 +6,7 @@ php publisher.test.php > /tmp/1
 ```
 
 - bill_distribution_start: 分发开始时间
-- bill_status: 发行中
+- bill_status=3: 修改 bill_status 为发行中
 ```
 mysql > update mdc_bill.bill_infos set bill_distribution_start = NOW(), bill_status = 3 where id = 51;
 ```
