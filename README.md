@@ -27,3 +27,9 @@ mdc_transacter_request  0       0       1
 mdc_line_seiya  0       0       1
 mdc_line_hyoga  0       0       1
 ```
+
+## Redis
+- db 1: USER 
+- db 2: TOKEN 
+- db 3: TRANSACTION_CODE
+- db 8: TRANSACTION_RESULT
