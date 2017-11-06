@@ -14,3 +14,16 @@
 - notify
 - sub-common
 - sub-transaction
+
+# 运维监控
+
+## Gearamn
+
+```
+$ gearadmin -h i2 --status
+
+mdc_transacter_resulter 0       0       1
+mdc_transacter_request  0       0       1
+mdc_line_seiya  0       0       1
+mdc_line_hyoga  0       0       1
+```
