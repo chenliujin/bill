@@ -1,0 +1,33 @@
+FROM registry.iot-sw.net:5000/nginx-php-fpm:5.6.31
+
+MAINTAINER chenliujin <liujin.chen@qq.com> 
+
+ENV TERM linux
+ENV LC_ALL en_US.UTF-8
+
+RUN mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
+COPY ./bill_v1/03-source/bill.work/Centos-7.repo 					/etc/yum.repos.d/Centos-7.repo
+RUN 	yum -y install supervisor; \
+	yum -y install crontabs; \
+	yum clean all
+
+COPY ./bill_v1/03-source/bill.work/transaction/usr/lib/php/pear/tps/worker 		/usr/lib/php/pear/tps/worker
+COPY ./bill_v1/03-source/bill.work/transaction/data/bin/bill 				/data/bin/bill
+COPY ./bill_v1/03-source/bill.work/tps.resulter/supervisord.conf 			/etc/supervisord.conf
+COPY ./common/usr/lib/php/pear/activerecord 						/usr/lib/php/pear/activerecord
+COPY ./common/usr/lib/php/pear/helper 							/usr/lib/php/pear/helper
+COPY ./common/usr/lib/php/pear/logger 							/usr/lib/php/pear/logger
+COPY ./common/usr/lib/php/pear/verifier 						/usr/lib/php/pear/verifier
+COPY ./common/data/conf/sandbox/db 							/data/conf/db
+COPY ./common/data/conf/sandbox/redis 							/data/conf/redis
+COPY ./common/data/conf/sandbox/gearmand 						/data/conf/gearmand
+
+RUN mkdir -p /data/log/supervisor && chmod 777 /data/log -R
+VOLUME ["/data/log"]
+
+RUN mkdir -p /var/log/supervisor && chmod a+x /var/log/supervisor
+VOLUME ["/var/log/supervisor"]
+
+RUN systemctl enable supervisord
+
+ENTRYPOINT ["/usr/sbin/init"]
